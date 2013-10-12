@@ -5,21 +5,27 @@
 		a:active {background-color: rgb(204, 204, 204);}
 		a:hover {background-color: rgb(221, 221, 221);border-bottom-color: rgb(187, 187, 187);border-left-color: rgb(187, 187, 187);border-right-color: rgb(187, 187, 187);border-top-color: rgb(187, 187, 187);}
 		a:focus {background-color: rgb(238, 238, 238);outline-color: rgb(229, 151, 0);outline-style: auto;outline-width: 5px;}
-		iframe {visibility: hidden; height: 0 px; width: 0 px;};
+		
 	</style>
 	
 	<script>
 	window.onload = function () {
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("GET", "searchReview.js", false);  // synchronous request
+	    xhr.send(null);
+	    mys=xhr.responseText;
 		
 	    var jsCode = document.createElement('a');   
 	    //jsCode.setAttribute('src', 'http://path/to/external/file.js');                    
-	  document.body.appendChild(jsCode);   
-	 };  
-	}
+	  document.body.appendChild(jsCode);
+
+	
+	};
 	</script>
 </head>
 <body>
-<iframe src=searchReview.js></iframe>
+(This page dynamically creates the bookmarklet through downloading and minifying the script from my github)<br>
+
 Just drag this to your bookmarks bar!<br>
 View a gdgt product page with critic reviews on it...<br>
 and activate the bookmarklet!
