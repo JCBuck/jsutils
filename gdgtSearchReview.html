@@ -8,12 +8,16 @@
 	</style>
 	
 	<script>
-	window.onload = function () {
-		console.log("loaded");
+	window.onload = function () {   
+	    var jsCode = document.createElement('a');   
+	    jsCode.setAttribute('src', 'http://path/to/external/file.js');                    
+	  document.body.appendChild(jsCode);   
+	 };  
 	}
 	</script>
 </head>
 <body>
+<iframe src=https://raw.github.com/JCBuck/jsutils/gh-pages/searchReview.js></iframe>
 Just drag this to your bookmarks bar!<br>
 View a gdgt product page with critic reviews on it...<br>
 and activate the bookmarklet!
