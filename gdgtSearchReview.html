@@ -13,7 +13,7 @@
 	    var xhr = new XMLHttpRequest();
 	    xhr.open("GET", "searchReview.js", false);  // synchronous request
 	    xhr.send(null);
-	    mys=xhr.responseText;
+	    var mys=xhr.responseText;
 		
 	    var jsCode = document.createElement('a');   
 	    jsCode.innerHTML = "gdgt item reviews search";
