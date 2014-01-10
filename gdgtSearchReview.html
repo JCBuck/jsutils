@@ -20,6 +20,18 @@
 	    jsCode.href=mys;
 	    jsCode.className = "cool"
 	  document.body.appendChild(jsCode);
+	  
+	  
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("GET", "popupProducts.js", false);  // synchronous request
+	    xhr.send(null);
+	    var mys=xhr.responseText;
+		
+	    var jsCode = document.createElement('a');   
+	    jsCode.innerHTML = "popupProducts";
+	    jsCode.href=mys;
+	    jsCode.className = "cool"
+	  document.body.appendChild(jsCode);
 
 	
 	};
