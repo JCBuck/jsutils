@@ -7,6 +7,10 @@ javascript:(function(){
 			timeout = setTimeout(
 					function (){
 						console.log("Search now! query: "+srch.value);
+						if(srch.value.trim.length==0) {
+							console.log("Except don't because spaces");
+						}
+							
 					
 			},250);
 		};
