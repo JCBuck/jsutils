@@ -11,13 +11,13 @@ javascript:(function(){
 			timeout = setTimeout(
 					function (){
 						console.log("Search now! query: "+srch.value);
-						if(srch.value.trim.length==0) {
+						if(srch.value.trim().length==0) {
 							console.log("Except don't because spaces");
 							return;
 						}
 						
 					    gdgtiframe.src="http://www.engadget.com/search/?q="+encodeURIComponent(srch.value);
-					    $(gdgtiframe.contentDocument).bind('DOMNodeInserted', function(e) {
+					    $(gdgtiframe.contentDocument).bind("DOMNodeInserted", function(e) {
 					    	var element = e.target;
 						    if(element.id=="gdgt-result"){
 						    	console.log(element.innerText);	
