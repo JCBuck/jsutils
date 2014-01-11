@@ -1,12 +1,6 @@
 javascript:(function(){
 	var timeout;
 	var srch = document.getElementById("nav-search-input");
-	var gdgtiframe = document.createElement("iframe");
-	gdgtiframe.style.display = "none";
-	gdgtiframe.style.width = "1000px"; 
-	gdgtiframe.id = "gdgtiframe";
-	document.body.appendChild(gdgtiframe);
-	
 	srch.oninput = 
 		function() { 
 			clearTimeout(timeout);
@@ -18,14 +12,18 @@ javascript:(function(){
 							return;
 						}
 						
-					    gdgtiframe.src="http://www.engadget.com/search/?q="+encodeURIComponent(srch.value);
-					    var gdgtres;
-					    var loadtmr = setTimeout(function() { 
-					    		gdgtres=gdgtiframe.contentDocument.getElementById("gdgt-result");
-					    		console.log(gdgtres.innerText);
-					    	
-					    	}, 1000);
-					
+					   
+				    var xhr = new XMLHttpRequest();
+				    xhr.open("GET", "http://www.engadget.com/search/?q="+encodeURIComponent(srch.value)+"&rail=rail", false);  // synchronous request
+				    xhr.send(null);
+				    var mys=xhr.responseText;
+					/*
+				    var jsCode = document.createElement('a');   
+				    jsCode.innerHTML = "popupProducts";
+				    jsCode.href=mys;
+				    jsCode.className = "cool"
+				  document.body.appendChild(jsCode);*/
+				  console.log(mys);
 			},250);
 		};
 }());
