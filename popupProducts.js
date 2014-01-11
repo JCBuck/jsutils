@@ -3,6 +3,8 @@ javascript:(function(){
 	var srch = document.getElementById("nav-search-input");
 	var gdgtiframe = document.createElement("iframe");
 	gdgtiframe.style.display = "none";
+	gdgtiframe.style.width = "1000px"; //must be this wide in order to have the gdgtresults...
+	gdgtiframe.id = "gdgtiframe"
 	document.body.appendChild(gdgtiframe);
 	
 	srch.oninput = 
@@ -17,16 +19,12 @@ javascript:(function(){
 						}
 						
 					    gdgtiframe.src="http://www.engadget.com/search/?q="+encodeURIComponent(srch.value);
-					    $(gdgtiframe.contentDocument).bind("DOMNodeInserted", function(e) {
-					    	var element = e.target;
-						    if(element.id=="gdgt-result"){
-						    	console.log(element.innerText);	
-						    }
-					    }
-					    );
-
-						
-							
+					    var gdgtres;
+					    var loadtmr = setTimeout(function() { 
+					    		gdgtres=gdgtiframe.contentDocument.getElementById("gdgt-result");
+					    		console.log(gdgtres.innerText);
+					    	
+					    	}, 1000);
 					
 			},250);
 		};
