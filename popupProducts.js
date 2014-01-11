@@ -58,7 +58,7 @@ javascript:(function(){
 								</ul>*/
                                     var parser=new DOMParser();
                                     var xmlDoc=parser.parseFromString(mys,"text/html");
-                                  popres.innerHTML = "<div class=\"categories-modal-left category-icon-25 hover-white\">"+xmlDoc.getElementById("gdgt-result").innerHTML + "</div>";
+                                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\">"+xmlDoc.getElementById("gdgt-result").innerHTML.replace("<ul>","<ul style=\"padding: 0\">")+ "</div>";
                         },250);
                 };
 }());
