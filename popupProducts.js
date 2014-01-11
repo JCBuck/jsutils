@@ -10,7 +10,7 @@ javascript:(function(){
     }
     popres.style.position = "fixed";
     popres.style.left = "50%";
-    popres.style.marginLeft = "190px";
+    popres.style.marginLeft = "0px";
     popres.style.zIndex = "999999";
     popres.style.top = "38px";
     popres.innerHTML = "";
@@ -58,7 +58,7 @@ javascript:(function(){
                 </ul>*/
                   var parser=new DOMParser();
                   var xmlDoc=parser.parseFromString(mys,"text/html");
-                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\">"+xmlDoc.getElementById("gdgt-result").innerHTML.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ")+ "</div>";
+                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+xmlDoc.getElementById("gdgt-result").innerHTML.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; \" ") + "</div>";
             },250);
         };
 }());
