@@ -29,7 +29,7 @@ javascript:(function(){
                        
                   var xhr = new XMLHttpRequest();
                   xhr.onreadystatechange=function()  {
-                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                  if (xhr.readyState==4 && xhr.status==200)
                     {
                      var mys=xmlhttp.responseText;
                   var parser=new DOMParser();
