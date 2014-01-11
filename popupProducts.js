@@ -4,7 +4,7 @@ javascript:(function(){
 	var gdgtiframe = document.createElement("iframe");
 	gdgtiframe.style.display = "none";
 	gdgtiframe.style.width = "1000px"; /*must be this wide in order to have the gdgtresults...*/
-	gdgtiframe.id = "gdgtiframe"
+	gdgtiframe.id = "gdgtiframe";
 	document.body.appendChild(gdgtiframe);
 	
 	srch.oninput = 
