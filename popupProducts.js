@@ -14,7 +14,7 @@ javascript:(function(){
                                                 
                                            
                                     var xhr = new XMLHttpRequest();
-                                    xhr.open("GET", "http://www.engadget.com/search/?q="+encodeURIComponent(srch.value)+"&rail=rail", false);  // synchronous request
+                                    xhr.open("GET", "http://www.engadget.com/search/?q="+encodeURIComponent(srch.value)+"&rail=rail", false);  
                                     xhr.send(null);
                                     var mys=xhr.responseText;
                                         /*
@@ -22,8 +22,27 @@ javascript:(function(){
                                     jsCode.innerHTML = "popupProducts";
                                     jsCode.href=mys;
                                     jsCode.className = "cool"
-                                  document.body.appendChild(jsCode);*/
+                                  document.body.appendChild(jsCode);
+<div style="position:fixed; left:50%; margin-left:190px;z-index:99999;top:38px"><div class="categories-modal-left category-icon-25 hover-white">
+						<h4>search</h4>
+						<ul style="padding: 0">
+										<li class="cellphones">
+									<a href="http://www.engadget.com/reviews/cellphones/">
+										<span></span>
 
+										cellphones
+									</a>
+								</li>
+										<li class="laptops">
+									<a href="http://www.engadget.com/reviews/laptops/">
+										<span></span>
+
+										laptops / portables
+									</a>
+								</li>
+
+								</ul>
+  </div></div>*/
                                     var parser=new DOMParser();
                                     var xmlDoc=parser.parseFromString(mys,"text/xml");
                                   console.log(xmlDoc.getElementById("gdgt-result").innerHTML);
