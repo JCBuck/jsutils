@@ -41,8 +41,7 @@ javascript:(function(){
 									</a>
 								</li>
 
-								</ul>
-  </div></div>*/
+								</ul>*/
                                     var parser=new DOMParser();
                                     var xmlDoc=parser.parseFromString(mys,"text/xml");
                                   console.log(xmlDoc.getElementById("gdgt-result").innerHTML);
