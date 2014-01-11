@@ -34,7 +34,7 @@ javascript:(function(){
                      var mys=xhr.responseText;
                   var parser=new DOMParser();
                   var xmlDoc=parser.parseFromString(mys,"text/html");
-                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+xmlDoc.getElementById("gdgt-result").innerHTML.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" ") + "</div>";
+                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+xmlDoc.getElementById("gdgt-result").innerHTML.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" ").replace(/<span/g, "<span style=\"position:absolute; left:2px\" ") + "</div>";
                     }
                   };
                   xhr.open("GET", "http://www.engadget.com/search/?q="+encodeURIComponent(srch.value)+"&rail=rail", true);  
