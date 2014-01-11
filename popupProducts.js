@@ -31,7 +31,7 @@ javascript:(function(){
                   xhr.onreadystatechange=function()  {
                   if (xhr.readyState==4 && xhr.status==200)
                     {
-                     var mys=xmlhttp.responseText;
+                     var mys=xhr.responseText;
                   var parser=new DOMParser();
                   var xmlDoc=parser.parseFromString(mys,"text/html");
                   popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+xmlDoc.getElementById("gdgt-result").innerHTML.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" ") + "</div>";
