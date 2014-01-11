@@ -28,4 +28,4 @@ javascript:(function(){
 					
 			},250);
 		};
-})();
+}());
