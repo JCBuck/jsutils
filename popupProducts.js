@@ -3,7 +3,7 @@ javascript:(function(){
 	var srch = document.getElementById("nav-search-input");
 	var gdgtiframe = document.createElement("iframe");
 	gdgtiframe.style.display = "none";
-	gdgtiframe.style.width = "1000px"; /*must be this wide in order to have the gdgtresults...*/
+	gdgtiframe.style.width = "1000px"; 
 	gdgtiframe.id = "gdgtiframe";
 	document.body.appendChild(gdgtiframe);
 	
