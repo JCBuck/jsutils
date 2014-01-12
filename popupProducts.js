@@ -7,7 +7,7 @@ javascript:(function(){var popfn=function(){
                   if (newpg.readyState==4 && newpg.status==200)
                     {
                      
-                        var injpg=newpg.responseText.replace("<body","<body onload='popfn()'").replace("</head>","<"+"script>var popfn=" + popfn.toString() +"<"+"/script></head>");
+                        var injpg=newpg.responseText.replace("<body","<body onload=\"popfn()\"").replace("</head>","<"+"script>var popfn=" + popfn.toString() +"<"+"/script></head>");
                         window.history.pushState({},"",targetlink);
                         document.open();document.write(injpg);document.close();
                     }
@@ -29,9 +29,9 @@ javascript:(function(){var popfn=function(){
                     
                     var newpg = ifrm.contentDocument.getElementsByTagName("html")[0].outerHTML;
                         
-                    var injpg=newpg.replace("<body","<body onload='popfn()'").replace("</head>","<"+"script>var popfn=" + popfn.toString() +"<"+"/script></head>");
+                    var injpg=newpg.replace("<body","<body onload=\"popfn()\"").replace("</head>","<"+"script>var popfn=" + popfn.toString() +"<"+"/script></head>");
                     
-                    //document.getElementsByTagName("html")[0].innerHTML = injpg;
+                    
                     window.history.pushState({},"",ifrm.src);
                     document.open();document.write(injpg);document.close();
                     
