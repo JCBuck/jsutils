@@ -38,7 +38,7 @@ javascript:(function(){
                  var gdgtresult = xmlDoc.getElementById("gdgt-result").innerHTML;
                   if(gdgtresult.trim().length == 0) {
                     
-                    srch.style.backgroundColor = "#DFF";
+                    srch.style.backgroundColor = "#FDD";
                     popres.innerHTML = "";
                   } else{
                       srch.style.backgroundColor = "#DFD";
