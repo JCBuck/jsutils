@@ -14,9 +14,9 @@ javascript:(function(){var popfn=function(){
             var ahref = e.target.href;
             var curloc = window.location.href;
             if(ahref.search("#")!=-1)
-                ahref = ahref.substr(0,ahref.search("#"))
+                ahref = ahref.substr(0,ahref.search("#"));
             if(curloc.search("#")!=-1)
-                curloc = curloc.substr(0,curloc.search("#"))
+                curloc = curloc.substr(0,curloc.search("#"));
             if(ahref!=curloc) {
                 loadlink(ahref);
                 console.log(e.target+" localname:" + e.target.localName + " href:" + e.target.href);
