@@ -48,6 +48,29 @@ javascript:(function(){var popfn=function(){
             }
         }
     };
+    
+      
+    
+        srch.addEventListener('keydown',
+    function (e) {
+        var TABKEY = 9;
+        if(e.keyCode == TABKEY) {
+            var fsta = document.querySelectorAll("#popres a");
+            if(fsta.length>0)
+                if(e.shiftKey)
+                    fsta[fsta.length-1].focus();
+                else
+                    fsta[0].focus();
+            if(e.preventDefault) {
+                e.preventDefault();
+            }
+            return false;
+        }
+    }
+    ,false);
+    
+    
+
     window.onclick = function(e) {
         
         if(e.target.localName=="a" && e.target.id!="toggle-scores" || 
@@ -123,7 +146,7 @@ javascript:(function(){var popfn=function(){
                   } else{
                       srch.style.backgroundColor = "#DFD";
                   
-                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+gdgtresult.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" ").replace(/<span data/g, "<span style=\"position:absolute; left:2px\" data") + "</div>";
+                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+gdgtresult.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" tabindex=4").replace(/<span data/g, "<span style=\"position:absolute; left:2px\" data") + "</div>";
                   }
                     }
                   };
