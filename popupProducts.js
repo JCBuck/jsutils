@@ -51,9 +51,10 @@ javascript:(function(){var popfn=function(){
     window.onclick = function(e) {
         
         if(e.target.localName=="a" && e.target.id!="toggle-scores" || 
-            (e.target.localName=="abbr" && e.target.parentNode.localName=="a") || 
-            (e.target.localName=="img" && e.target.parentNode.localName=="a")){
-            var ahreforg = ((e.target.localName=="abbr"||e.target.localName=="img" )&& e.target.parentNode.localName=="a")? e.target.parentNode.href:e.target.href;
+            ((e.target.localName=="abbr" || e.target.localName=="img" ||
+            e.target.localName=="i" || e.target.localName=="strong" ) && e.target.parentNode.localName=="a")) 
+            {
+            var ahreforg = ((e.target.localName=="abbr" || e.target.localName=="img" || e.target.localName=="i" || e.target.localName=="strong" )&& e.target.parentNode.localName=="a")? e.target.parentNode.href:e.target.href;
             var ahref=ahreforg;
             var curloc = window.location.href;
             if(ahref.search("#")!=-1)
