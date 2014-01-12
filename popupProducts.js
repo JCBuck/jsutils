@@ -1,6 +1,8 @@
-javascript:(function(){
+javascript:(function(){var popfn=function(){
     var timeout;
     var srch = document.getElementById("nav-search-input");
+    
+    var closetimer;
     srch.style.backgroundColor = "#DFD";
     var popres = document.getElementById("popres");
     if(!(popres && popres.id=="popres")) {
@@ -15,9 +17,9 @@ javascript:(function(){
     popres.style.zIndex = "999999999";
     popres.style.top = "38px";
     popres.innerHTML = "";
-    var closetimer;
     popres.onmouseenter = function () { if(closetimer!=null) clearTimeout(closetimer); };
-    popres.onmouseleave = function () { closetimer = setTimeout(function(){popres.innerHTML = "";},1000);};
+    srch.onmouseenter = popres.onmouseenter;
+    popres.onmouseleave = function () { closetimer = setTimeout(function(){popres.innerHTML = "";},500);};
     
     srch.oninput = 
         function() { 
@@ -57,4 +59,4 @@ javascript:(function(){
                  
             },250);
         };
-}());
+}; popfn();}())
