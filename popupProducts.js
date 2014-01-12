@@ -1,6 +1,7 @@
 javascript:(function(){var popfn=function(){
     var timeout;
     var srch = document.getElementById("nav-search-input");
+    document.getElementsByTagName("head")[0].innerHTML +="<style> a.popresitem:focus {background: #39c!important;color: #fff!important;}</style>";
     var loadlink = function(targetlink,nohistory) {
                   var newpg = new XMLHttpRequest();
                   newpg.onreadystatechange=function()  {
@@ -146,7 +147,7 @@ javascript:(function(){var popfn=function(){
                   } else{
                       srch.style.backgroundColor = "#DFD";
                   
-                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+gdgtresult.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" tabindex=4").replace(/<span data/g, "<span style=\"position:absolute; left:2px\" data") + "</div>";
+                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+gdgtresult.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" tabindex=1337 class=\"popresitem\" ").replace(/<span data/g, "<span style=\"position:absolute; left:2px\" data") + "</div>";
                   }
                     }
                   };
