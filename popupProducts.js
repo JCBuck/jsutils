@@ -1,6 +1,7 @@
 javascript:(function(){
     var timeout;
     var srch = document.getElementById("nav-search-input");
+    srch.style.backgroundColor = "#DFD";
     var popres = document.getElementById("popres");
     if(!(popres && popres.id=="popres")) {
   
@@ -34,7 +35,16 @@ javascript:(function(){
                      var mys=xhr.responseText;
                   var parser=new DOMParser();
                   var xmlDoc=parser.parseFromString(mys,"text/html");
-                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+xmlDoc.getElementById("gdgt-result").innerHTML.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" ").replace(/<span data/g, "<span style=\"position:absolute; left:2px\" data") + "</div>";
+                 var gdgtresult = xmlDoc.getElementById("gdgt-result").innerHTML;
+                  if(gdgtresult.trim().length = 0) {
+                    
+                    srch.style.backgroundColor = "#DFF";
+                    popres.innerHTML = "";
+                  } else{
+                      srch.style.backgroundColor = "#FDF";
+                  
+                  popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+gdgtresult.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" ").replace(/<span data/g, "<span style=\"position:absolute; left:2px\" data") + "</div>";
+                  }
                     }
                   };
                   xhr.open("GET", "http://www.engadget.com/search/?q="+encodeURIComponent(srch.value)+"&rail=rail", true);  
