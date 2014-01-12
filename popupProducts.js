@@ -54,7 +54,7 @@ javascript:(function(){var popfn=function(){
                 curloc = curloc.substr(0,curloc.search("#"));
                 
             
-            if(ahref!=curloc || (ahref==curloc && ahref.search("#")==-1 && curloc.search("#")==-1)) {
+            if(ahref!=curloc || (ahref==curloc &&  e.target.href.search("#")==-1 && window.location.href.search("#")==-1)) {
                 if(ahref.search("www.engadget.com")==-1)
                     return true;
                 console.log(e.target+" curhref:" + window.location.href + " href:" + e.target.href);
