@@ -1,6 +1,7 @@
 javascript:(function(){var popfn=function(){
     var timeout;
     var srch = document.getElementById("nav-search-input");
+    var onstate
     var loadlink = function(targetlink) {
                   var newpg = new XMLHttpRequest();
                   newpg.onreadystatechange=function()  {
@@ -17,6 +18,9 @@ javascript:(function(){var popfn=function(){
                     newpg.open("GET",targetlink, true);
                     newpg.send(null);
     };
+    window.onpopstate = function(event) {
+  loadlink(document.location);
+};
     window.onsubmit = function(e) {
         if(e.target.method=="get") {
             if(e.target.elements.length>0){
@@ -44,8 +48,10 @@ javascript:(function(){var popfn=function(){
     };
     window.onclick = function(e) {
         
-        if(e.target.localName=="a" && e.target.id!="toggle-scores" || (e.target.localName=="abbr" && e.target.parentNode.localName=="a")){
-            var ahreforg = (e.target.localName=="abbr" && e.target.parentNode.localName=="a")? e.target.parentNode.href:e.target.href;
+        if(e.target.localName=="a" && e.target.id!="toggle-scores" || 
+            (e.target.localName=="abbr" && e.target.parentNode.localName=="a") || 
+            (e.target.localName=="img" && e.target.parentNode.localName=="a")){
+            var ahreforg = ((e.target.localName=="abbr"||e.target.localName=="img" )&& e.target.parentNode.localName=="a")? e.target.parentNode.href:e.target.href;
             var ahref=ahreforg;
             var curloc = window.location.href;
             if(ahref.search("#")!=-1)
