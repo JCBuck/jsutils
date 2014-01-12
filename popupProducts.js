@@ -41,7 +41,7 @@ javascript:(function(){var popfn=function(){
                 }
             }
         }
-    }
+    };
     window.onclick = function(e) {
         
         if(e.target.localName=="a"){
