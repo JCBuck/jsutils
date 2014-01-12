@@ -1,15 +1,15 @@
 javascript:(function(){var popfn=function(){
     var timeout;
     var srch = document.getElementById("nav-search-input");
-    var onstate
-    var loadlink = function(targetlink) {
+    
+    var loadlink = function(targetlink,nohistory) {
                   var newpg = new XMLHttpRequest();
                   newpg.onreadystatechange=function()  {
                   if (newpg.readyState==4 && newpg.status==200)
                     {
                      
                         var injpg=newpg.responseText.replace("<body","<body onload=\"popfn()\"").replace("</head>","<"+"script>var popfn=" + popfn.toString() +"<"+"/script></head>");
-                        window.history.pushState({},"",targetlink);
+                        if(!nohistory)window.history.pushState({},"",targetlink);
                         document.open();document.write(injpg);document.close();
                     }
 
@@ -19,7 +19,7 @@ javascript:(function(){var popfn=function(){
                     newpg.send(null);
     };
     window.onpopstate = function(event) {
-  loadlink(document.location);
+  loadlink(document.location, true);
 };
     window.onsubmit = function(e) {
         if(e.target.method=="get") {
@@ -67,7 +67,7 @@ javascript:(function(){var popfn=function(){
                 
                 console.log("modified curhref: + " + curloc + " href:" + ahref);
                 
-                loadlink(ahref);
+                loadlink(ahref,false);
                 
                 return false;
             }
