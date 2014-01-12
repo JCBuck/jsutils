@@ -41,7 +41,7 @@ javascript:(function(){
                     srch.style.backgroundColor = "#DFF";
                     popres.innerHTML = "";
                   } else{
-                      srch.style.backgroundColor = "#FDF";
+                      srch.style.backgroundColor = "#DFD";
                   
                   popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+gdgtresult.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" ").replace(/<span data/g, "<span style=\"position:absolute; left:2px\" data") + "</div>";
                   }
