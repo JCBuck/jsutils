@@ -10,7 +10,7 @@ javascript:(function(){var popfn=function(){
     
     };
     window.onclick = function(e) {
-        if(e.target.localname=="a")
+        if(e.target.localname=="a"){
             var ahref = e.target.href;
             var curloc = window.location.href;
             if(ahref.search("#")!=-1)
