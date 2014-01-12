@@ -44,9 +44,9 @@ javascript:(function(){var popfn=function(){
     };
     window.onclick = function(e) {
         
-        if(e.target.localName=="a"){
-            var ahref = e.target.href;
-            
+        if(e.target.localName=="a" && e.target.id!="toggle-scores" || (e.target.localName=="abbr" && e.target.parentNode.localName=="a")){
+            var ahreforg = (e.target.localName=="abbr" && e.target.parentNode.localName=="a")? e.target.parentNode.href:e.target.href;
+            var ahref=ahreforg;
             var curloc = window.location.href;
             if(ahref.search("#")!=-1)
                 ahref = ahref.substr(0,ahref.search("#"));
@@ -54,10 +54,10 @@ javascript:(function(){var popfn=function(){
                 curloc = curloc.substr(0,curloc.search("#"));
                 
             
-            if(ahref!=curloc || (ahref==curloc &&  e.target.href.search("#")==-1 && window.location.href.search("#")==-1)) {
+            if(ahref!=curloc || (ahref==curloc &&  ahreforg.search("#")==-1 && window.location.href.search("#")==-1)) {
                 if(ahref.search("www.engadget.com")==-1)
                     return true;
-                console.log(e.target+" curhref:" + window.location.href + " href:" + e.target.href);
+                console.log(e.target+" curhref:" + window.location.href + " href:" + ahreforg);
                 
                 console.log("modified curhref: + " + curloc + " href:" + ahref);
                 
