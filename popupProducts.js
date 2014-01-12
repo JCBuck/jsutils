@@ -11,7 +11,7 @@ javascript:(function(){
     popres.style.position = "fixed";
     popres.style.left = "50%";
     popres.style.marginLeft = "0px";
-    popres.style.zIndex = "999999";
+    popres.style.zIndex = "999999999";
     popres.style.top = "38px";
     popres.innerHTML = "";
     
