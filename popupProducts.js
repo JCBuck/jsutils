@@ -15,6 +15,9 @@ javascript:(function(){
     popres.style.zIndex = "999999999";
     popres.style.top = "38px";
     popres.innerHTML = "";
+    var closetimer;
+    popres.onmouseenter = function () { if(closetimer!=null) clearTimeout(closetimer); };
+    popres.onmouseleave = function () { closetimer = setTimeout(function(){popres.innerHTML = "";},1000);};
     
     srch.oninput = 
         function() { 
