@@ -36,7 +36,7 @@ javascript:(function(){
                   var parser=new DOMParser();
                   var xmlDoc=parser.parseFromString(mys,"text/html");
                  var gdgtresult = xmlDoc.getElementById("gdgt-result").innerHTML;
-                  if(gdgtresult.trim().length = 0) {
+                  if(gdgtresult.trim().length == 0) {
                     
                     srch.style.backgroundColor = "#DFF";
                     popres.innerHTML = "";
