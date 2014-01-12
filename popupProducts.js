@@ -2,24 +2,65 @@ javascript:(function(){var popfn=function(){
     var timeout;
     var srch = document.getElementById("nav-search-input");
     var loadlink = function(targetlink) {
-        var newpg = new XMLHttpRequest();
-        newpg.open("GET", targetlink, false);
-        newpg.send(null);
-        document.getElementsByTagName("HTML")[0].outerHTML=newpg.responseText;
-        popfn();
-    
+                  var newpg = new XMLHttpRequest();
+                  newpg.onreadystatechange=function()  {
+                  if (newpg.readyState==4 && newpg.status==200)
+                    {
+                     
+                        var injpg=newpg.responseText.replace("<body","<body onload='popfn()'").replace("</head>","<"+"script>var popfn=" + popfn.toString() +"<"+"/script></head>");
+                        window.history.pushState({},"",targetlink);
+                        document.open();document.write(injpg);document.close();
+                    }
+
+                  };
+                  
+                    newpg.open("GET",targetlink, true);
+                    newpg.send(null);
     };
+    window.onsubmit = function(e) {
+        if(e.target.method=="get") {
+            if(e.target.elements.length>0){
+                if(e.target.elements[0].name=="q"){
+                    var ifrm = document.createElement("iframe");
+                    ifrm.width = "1000px";
+                    ifrm.src = "http://www.engadget.com/search/?q="+encodeURI(e.target.elements[0].value);
+                    document.body.appendChild(ifrm);
+                    ifrm.onload = function () {
+                    
+                    var newpg = ifrm.contentDocument.getElementsByTagName("html")[0].outerHTML;
+                        
+                    var injpg=newpg.replace("<body","<body onload='popfn()'").replace("</head>","<"+"script>var popfn=" + popfn.toString() +"<"+"/script></head>");
+                    
+                    //document.getElementsByTagName("html")[0].innerHTML = injpg;
+                    window.history.pushState({},"",ifrm.src);
+                    document.open();document.write(injpg);document.close();
+                    
+                    };
+                    
+                    return false;
+                }
+            }
+        }
+    }
     window.onclick = function(e) {
-        if(e.target.localname=="a"){
+        
+        if(e.target.localName=="a"){
             var ahref = e.target.href;
             var curloc = window.location.href;
             if(ahref.search("#")!=-1)
                 ahref = ahref.substr(0,ahref.search("#"));
             if(curloc.search("#")!=-1)
                 curloc = curloc.substr(0,curloc.search("#"));
-            if(ahref!=curloc) {
+                
+          
+            if(ahref!=curloc || (ahref==curloc && ahref.search("#")==-1 && curloc.search("#")==-1)) {
+                
+                console.log(e.target+" curhref:" + window.location.href + " href:" + e.target.href);
+                
+                console.log("modified curhref: + " + curloc + " href:" + ahref);
+                
                 loadlink(ahref);
-                console.log(e.target+" localname:" + e.target.localName + " href:" + e.target.href);
+                
                 return false;
             }
         }
@@ -41,7 +82,7 @@ javascript:(function(){var popfn=function(){
     popres.innerHTML = "";
     popres.onmouseenter = function () { if(closetimer!=null) clearTimeout(closetimer); };
     srch.onmouseenter = popres.onmouseenter;
-    popres.onmouseleave = function () { closetimer = setTimeout(function(){popres.innerHTML = "";},125);};
+    popres.onmouseleave = function () { closetimer = setTimeout(function(){popres.innerHTML = "";},200);};
     
     srch.oninput = 
         function() { 
@@ -51,6 +92,7 @@ javascript:(function(){var popfn=function(){
                         console.log("Search now! query: "+srch.value);
                         if(srch.value.trim().length<2) {
                             console.log("Except don't because spaces or not long enough");
+                            popres.innerHTML = "";
                             return;
                         }
                         
@@ -79,6 +121,6 @@ javascript:(function(){var popfn=function(){
                   
                   
                  
-            },125);
+            },200);
         };
 }; popfn();}())
