@@ -1,7 +1,6 @@
 javascript:(function(){var popfn=function(){
     var timeout;
     var srch = document.getElementById("nav-search-input");
-    
     var loadlink = function(targetlink,nohistory) {
                   var newpg = new XMLHttpRequest();
                   newpg.onreadystatechange=function()  {
@@ -19,7 +18,10 @@ javascript:(function(){var popfn=function(){
                     newpg.send(null);
     };
     window.onpopstate = function(event) {
-  loadlink(document.location, true);
+        
+    if(event.state){
+        loadlink(document.location, true);
+    }
 };
     window.onsubmit = function(e) {
         if(e.target.method=="get") {
