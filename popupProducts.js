@@ -1,7 +1,7 @@
 javascript:(function(){var popfn=function(){
     var timeout;
     var srch = document.getElementById("nav-search-input");
-    document.getElementsByTagName("head")[0].innerHTML +="<style> a.popresitem:focus {background: #39c!important;color: #fff!important;}</style>";
+    document.styleSheets[0].insertRule("a.popresitem:focus {background: #39c!important;color: #fff!important;}",1)
     var loadlink = function(targetlink,nohistory) {
                   var newpg = new XMLHttpRequest();
                   newpg.onreadystatechange=function()  {
