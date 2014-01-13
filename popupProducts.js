@@ -10,12 +10,14 @@ javascript:(function(){var popfn=function(){
                      
                         var injpg=newpg.responseText.replace("<body","<body onload=\"popfn()\"").replace("</head>","<"+"script>var popfn=" + popfn.toString() +"<"+"/script></head>");
                         if(!nohistory)window.history.pushState({},"",targetlink);
+                        
                         document.open();document.write(injpg);document.close();
                     }
 
                   };
                   
                     newpg.open("GET",targetlink, true);
+                    
                     newpg.send(null);
     };
     window.onpopstate = function(event) {
@@ -51,9 +53,7 @@ javascript:(function(){var popfn=function(){
     };
     
       
-    
-        srch.addEventListener('keydown',
-    function (e) {
+    var shiftdt =   function (e) {
         var TABKEY = 9;
         if(e.keyCode == TABKEY) {
             var fsta = document.querySelectorAll("#popres a");
@@ -67,8 +67,8 @@ javascript:(function(){var popfn=function(){
             }
             return false;
         }
-    }
-    ,false);
+    };
+        srch.addEventListener('keydown', shiftdt,false);
     
     
 
@@ -76,24 +76,31 @@ javascript:(function(){var popfn=function(){
         
         if(e.target.localName=="a" && e.target.id!="toggle-scores" || 
             ((e.target.localName=="abbr" || e.target.localName=="img" ||
-            e.target.localName=="i" || e.target.localName=="strong" ) && e.target.parentNode.localName=="a")) 
+            e.target.localName=="i" || e.target.localName=="strong" ||
+            e.target.localName=="span") && e.target.parentNode.localName=="a") ||
+            (e.target.localName=="span" && e.target.parentNode.parentNode.localName=="a")) 
             {
-            var ahreforg = ((e.target.localName=="abbr" || e.target.localName=="img" || e.target.localName=="i" || e.target.localName=="strong" )&& e.target.parentNode.localName=="a")? e.target.parentNode.href:e.target.href;
+                if(e.target.parentNode && e.target.parentNode.id.search("-tab") !=-1)
+                    return true;
+            var ahreforg = ((e.target.localName=="span"||e.target.localName=="abbr" || e.target.localName=="img" || e.target.localName=="i" || e.target.localName=="strong" )&& e.target.parentNode.localName=="a")? e.target.parentNode.href:e.target.href;
+            if (e.target.localName=="span" && e.target.parentNode.parentNode.localName=="a")
+                ahreforg = e.target.parentNode.parentNode.href;
             var ahref=ahreforg;
             var curloc = window.location.href;
             if(ahref.search("#")!=-1)
                 ahref = ahref.substr(0,ahref.search("#"));
             if(curloc.search("#")!=-1)
                 curloc = curloc.substr(0,curloc.search("#"));
-                
-            
-            if(ahref!=curloc || (ahref==curloc &&  ahreforg.search("#")==-1 && window.location.href.search("#")==-1)) {
-                if(ahref.search("www.engadget.com")==-1)
-                    return true;
-                console.log(e.target+" curhref:" + window.location.href + " href:" + ahreforg);
+                    console.log(e.target+" curhref:" + window.location.href + " href:" + ahreforg);
                 
                 console.log("modified curhref: + " + curloc + " href:" + ahref);
+            
+            if(ahref!=curloc || (ahref==curloc &&  ahreforg.search("#")==-1 && window.location.href.search("#")==-1)) {
                 
+            
+                if(ahref.search("www.engadget.com")==-1)
+                    return true;
+                window.stop(); /*sometimes links navigate anyway other js nav contention?*/
                 loadlink(ahref,false);
                 
                 return false;
@@ -148,6 +155,16 @@ javascript:(function(){var popfn=function(){
                       srch.style.backgroundColor = "#DFD";
                   
                   popres.innerHTML = "<div class=\"categories-modal-left hover-white\" style=\"overflow: overlay; width: 420px\">"+gdgtresult.replace("<ul>","<ul style=\"padding: 0\">").replace(/<img/g, "<img style=\"vertical-align: middle; height: 32px; width: 32px\" ").replace(/<a/g, "<a style=\"height: 40px; width:400px \" tabindex=1337 class=\"popresitem\" ").replace(/<span data/g, "<span style=\"position:absolute; left:2px\" data") + "</div>";
+                  
+                  var refs =popres.getElementsByTagName("a");
+                  
+                  if(refs.length==1)
+                    refs[0].addEventListener('keydown', shiftdt,false);
+                    else{
+                        refs[0].addEventListener('keydown', function(e){ if(e.shiftKey) shiftdt(e);},false);
+                        refs[refs.length-1].addEventListener('keydown', function(e){ if(!e.shiftKey) shiftdt(e);},false);
+                    }
+                    
                   }
                     }
                   };
