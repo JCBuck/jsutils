@@ -203,9 +203,6 @@ javascript:(function(){var popfn=function(){
                   };
                   xhr.open("GET", "http://www.engadget.com/search/?q="+encodeURIComponent(srch.value)+"&rail=rail", true);  
                   xhr.send(null);
-                  
-                  
-                 
-            },200);
+            },125);
         };
 }; popfn();}())
