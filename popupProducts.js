@@ -1,7 +1,7 @@
 javascript:(function(){var popfn=function(){
     var timeout;
     var srch = document.getElementById("nav-search-input");
-    document.styleSheets[0].insertRule("a.popresitem:focus {background: #39c!important;color: #fff!important;}",1)
+    document.styleSheets[0].insertRule("a.popresitem:focus {background: #39c!important;color: #fff!important;}",1);
     var loadlink = function(targetlink,nohistory) {
                   var newpg = new XMLHttpRequest();
                   newpg.onreadystatechange=function()  {
@@ -68,7 +68,7 @@ javascript:(function(){var popfn=function(){
             return false;
         }
     };
-        srch.addEventListener('keydown', shiftdt,false);
+        srch.addEventListener("keydown", shiftdt,false);
     
     
 
@@ -159,10 +159,10 @@ javascript:(function(){var popfn=function(){
                   var refs =popres.getElementsByTagName("a");
                   
                   if(refs.length==1)
-                    refs[0].addEventListener('keydown', shiftdt,false);
+                    refs[0].addEventListener("keydown", shiftdt,false);
                     else{
-                        refs[0].addEventListener('keydown', function(e){ if(e.shiftKey) shiftdt(e);},false);
-                        refs[refs.length-1].addEventListener('keydown', function(e){ if(!e.shiftKey) shiftdt(e);},false);
+                        refs[0].addEventListener("keydown", function(e){ if(e.shiftKey) shiftdt(e);},false);
+                        refs[refs.length-1].addEventListener("keydown", function(e){ if(!e.shiftKey) shiftdt(e);},false);
                     }
                     
                   }
