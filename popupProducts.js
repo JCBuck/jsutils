@@ -1,4 +1,8 @@
-javascript:(function(){var popfn=function(){
+javascript:(function(){var popfnloaded = false; var popfn=function(){
+    if(popfnloaded)
+        return true;
+    popfnloaded = true;
+    
     var timeout;
     var srch = document.getElementById("nav-search-input");
     document.styleSheets[0].insertRule("a.popresitem:focus {background: #39c!important;color: #fff!important;}",1);
@@ -8,7 +12,7 @@ javascript:(function(){var popfn=function(){
                   if (newpg.readyState==4 && newpg.status==200)
                     {
                      
-                        var injpg=newpg.responseText.replace("<body","<body onload=\"popfn()\"").replace("</head>","<"+"script>var popfn=" + popfn.toString() +"<"+"/script></head>");
+                        var injpg=newpg.responseText.replace("<body","<body onload=\"popfn()\"").replace("</head>","<"+"script>var popfnloaded=false;var popfn=" + popfn.toString() +"\nwindow.addEventListener(\"DOMContentLoaded\", popfn);<"+"/script></head>");
                         if(!nohistory)window.history.pushState({},"",targetlink);
                         
                         document.open();document.write(injpg);document.close();
