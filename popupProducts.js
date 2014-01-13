@@ -162,13 +162,13 @@ javascript:(function(){var popfn=function(){
                       if(e.keyCode==27) {srch.focus(); popres.innerHTML="";}
                       else if(e.keyCode==38){
                            
-                                
-                         for(var i = 0;i < refs.length;i++) 
-                            if(document.activeElement == refs[i])
-                               if(i>0)
-                                    refs[i-1].focus();
-                                else
-                                    refs[refs.length-1].focus();
+                        
+                         var i = 0;
+                         while(document.activeElement != refs[i]) i++;
+                         if(i>0)
+                             refs[i-1].focus();
+                         else
+                             refs[refs.length-1].focus();
                                 
                             
                          
@@ -177,12 +177,13 @@ javascript:(function(){var popfn=function(){
                       }
                       else if(e.keyCode==40){
                                 
-                         for(var i = 0;i < refs.length;i++) 
-                            if(document.activeElement == refs[i])
-                               if(i<refs.length-1)
-                                    refs[i+1].focus();
-                                else
-                                    refs[0].focus();
+                         var i = 0;
+                         while(document.activeElement != refs[i]) i++;
+                         
+                         if(i<refs.length-1)
+                            refs[i+1].focus(); 
+                         else
+                            refs[0].focus();
                                 
                           e.preventDefault();
                       return false;
