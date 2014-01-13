@@ -26,6 +26,7 @@ javascript:(function(){var popfn=function(){
         loadlink(document.location, true);
     }
 };
+
 document.body.onkeypress = function (e) { if(e.keyCode == 96) {srch.focus(); return false;} };
     window.onsubmit = function(e) {
         if(e.target.method=="get") {
@@ -123,10 +124,12 @@ document.body.onkeypress = function (e) { if(e.keyCode == 96) {srch.focus(); ret
     popres.style.zIndex = "999999999";
     popres.style.top = "38px";
     popres.innerHTML = "";
-    popres.onmouseenter = function () { if(closetimer!=null) clearTimeout(closetimer); };
+    /*popres.onmouseenter = function () { if(closetimer!=null) clearTimeout(closetimer); };
     srch.onmouseenter = popres.onmouseenter;
-    popres.onmouseleave = function () { closetimer = setTimeout(function(){popres.innerHTML = "";},200);};
-    
+    popres.onmouseleave = function () { closetimer = setTimeout(function(){popres.innerHTML = "";},200);};*/
+    popres.onmouseenter = function () { closetimer = false };
+    popres.onmouseleave = function () {closetimer = true };
+    document.body.onclick = function () { if(closetimer) popres.innerHTML=""};
     srch.oninput = 
         function() { 
             clearTimeout(timeout);
@@ -189,7 +192,7 @@ document.body.onkeypress = function (e) { if(e.keyCode == 96) {srch.focus(); ret
                           e.preventDefault();
                       return false;
                       }
-                      else if(e.keyCode>=32 && e.keyCode <= 126) {srch.focus();/*srch.dispatchEvent(new e.constructor(e.type, e));*/}
+                      else if((e.keyCode>=32 && e.keyCode <= 126) || e.keyCode==8) {srch.focus();/*srch.dispatchEvent(new e.constructor(e.type, e));*/}
                       };
                       
                   if(refs.length==1)
