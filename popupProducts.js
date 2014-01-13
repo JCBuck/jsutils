@@ -71,7 +71,7 @@ document.body.onkeypress = function (e) { if(e.keyCode == 96) {srch.focus(); ret
             return false;
         }
     };
-        srch.onkeydown = function(e) { console.log(e.keyCode);if(e.keyCode==27) if(popres.innerHTML!="") popres.innerHTML=""; else srch.blur(); shiftdt(e) };
+        srch.onkeydown = function(e) { if(e.keyCode==27) if(popres.innerHTML!="") popres.innerHTML=""; else srch.blur(); shiftdt(e) };
     
     
 
