@@ -26,6 +26,7 @@ javascript:(function(){var popfn=function(){
         loadlink(document.location, true);
     }
 };
+document.body.onkeypress = function (e) { if(e.keyCode == 96) {srch.focus(); return false;} };
     window.onsubmit = function(e) {
         if(e.target.method=="get") {
             if(e.target.elements.length>0){
