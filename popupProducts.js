@@ -27,6 +27,7 @@ javascript:(function(){var popfn=function(){
     }
 };
 
+
 document.body.onkeypress = function (e) { if(e.keyCode == 96) {srch.focus(); return false;} };
     window.onsubmit = function(e) {
         if(e.target.method=="get") {
@@ -70,7 +71,7 @@ document.body.onkeypress = function (e) { if(e.keyCode == 96) {srch.focus(); ret
             return false;
         }
     };
-        srch.onkeydown = shiftdt;
+        srch.onkeydown = function(e) { console.log(e.keyCode);if(e.keyCode==27) if(popres.innerHTML!="") popres.innerHTML=""; else srch.blur(); shiftdt(e) };
     
     
 
