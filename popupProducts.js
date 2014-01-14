@@ -82,7 +82,7 @@ document.body.onkeypress = function (e) { if(e.keyCode == 96) {srch.focus(); ret
     window.onclick = function(e) {
         if(e.shiftKey || e.ctrlKey || e.which!=1)
             return true;
-        if(e.target.localName=="a" && e.target.id!="toggle-scores" && e.target.id!="add-publisher-review-button"|| 
+        if(e.target.localName=="a" && e.target.id!="toggle-scores" && e.target.id!="add-publisher-review-button" && e.target.parentNode.className!="login-register"|| 
             ((e.target.localName=="abbr" || e.target.localName=="img" ||
             e.target.localName=="i" || e.target.localName=="strong" ||
             e.target.localName=="span") && e.target.parentNode.localName=="a") ||
