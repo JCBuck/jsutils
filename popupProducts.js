@@ -2,7 +2,7 @@ javascript:(function(){var popfnloaded = false; var popfn=function(){
     if(popfnloaded)
         return true;
     popfnloaded = true;
-    
+      
     var timeout;
     var srch = document.getElementById("nav-search-input");
     document.styleSheets[0].insertRule("a.popresitem:focus {background: #39c!important;color: #fff!important;}",1);
