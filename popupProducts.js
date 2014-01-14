@@ -45,7 +45,7 @@ document.body.onkeypress = function (e) { if(e.keyCode == 96) {srch.focus(); ret
                     
                     var newpg = ifrm.contentDocument.getElementsByTagName("html")[0].outerHTML;
                         
-                    var injpg=newpg.replace("<body","<body onload=\"popfn()\"").replace("</head>","<"+"script>var popfn=" + popfn.toString() +"<"+"/script></head>");
+                    var injpg=newpg.replace("<body","<body onload=\"popfn()\"").replace("</head>","<"+"script>var popfnloaded=false;var popfn=" + popfn.toString() +"<"+"/script></head>");
                     
                     
                     window.history.pushState({},"",ifrm.src);
