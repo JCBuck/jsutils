@@ -1,0 +1,1 @@
+javascript: (function () {var oldRun = Run; Run = function() { oldRun(); setTimeout(function(){liveit=document.querySelector("#Result");liveit.innerHTML=liveit.textContent;$('#Result').replaceWith($('<div id=Result/>').html($('#Result').html()));}, 1000);}})();
