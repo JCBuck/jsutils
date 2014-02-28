@@ -1,0 +1,1 @@
+c = document.getElementById('paste_code'); speech = c.value; speech = speech.split('\n');str=""; speech.forEach(function (hi) { line = hi.match(/\[.+\]/); if(line===null){str+=hi+'\n';} else {nums = line[0].match(/<(\d{1,4}),/gm); totdel = 0; nums.forEach(function (dig) {totdel += parseInt(dig.match(/\d+/)[0])}); str+="{enter}"+line[0]+"{enter}\nSleep "+totdel+"ms\n";}}); str
