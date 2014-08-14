@@ -1,0 +1,1 @@
+javascript:(function(){[].forEach.call(document.querySelectorAll('.js-directory-link'),function(l) { if(l.title.contains('.')) console.log((l.href=l.href.replace('/blob/','/raw/'))+" tabindex:" +(l.tabIndex="-1"))})})()
