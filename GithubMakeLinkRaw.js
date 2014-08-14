@@ -1,1 +1,1 @@
-javascript:(function(){[].forEach.call(document.querySelectorAll('.js-directory-link'),function(l) { if(l.title.contains('.')) console.log((l.href=l.href.replace('/blob/','/raw/'))+" tabindex:" +(l.tabIndex="-1"))})})()
+javascript:(function(){var l=document.querySelectorAll('.js-directory-link');[].forEach.call(l,function(l) { if(!l.parentNode.parentNode.previousElementSibling.children[0].className.contains('directory')) console.log(l.href=l.href.replace('/blob/','/raw/')); l.tabIndex="1337"});l[0].focus()})()
