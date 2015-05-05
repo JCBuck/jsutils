@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convert Registry Unicode format</title>
+    <script type="text/javascript">
+        function convertToAscii(cur){
+            var buf = cur.value;
+            buf = buf.replace(/,\\\W+/g,",");
+            var hexsplit = buf.split(/(hex\(2\):.+00,00)/);
+            hexsplit.forEach(function(line,elm) {
+                if(line.substr(0,7) === "hex(2):" && line.substr(-5,5) === "00,00"){
+                    var modline = line.replace("hex(2):","hex(2):,").split(",");
+                    var newstr = "hex(2):";
+                    for(var i = 1; i+1 < modline.length; i+=2){
+                        var conv = String.fromCharCode(parseInt(modline[i+1]+modline[i],16));
+                        newstr += conv!="\0"?conv:"";                         
+                    }
+                    hexsplit[elm] = newstr;
+                }
+            });
+             document.getElementById('regout').value= hexsplit.join("");
+        }
+        function convertToUnicodeHex(cur) {
+
+            var buf = cur.value;
+            buf = buf.replace(/,\\\W+/g,",");
+            var hexsplit = buf.split(/(hex\(2\):.+)/);
+            hexsplit.forEach(function(line,elm) {
+                if(line.substr(0,7) === "hex(2):"){
+                    var encline = "hex(2):";
+                    var colcnt = hexsplit[elm-1].substr(hexsplit[elm-1].lastIndexOf("\n")+1,hexsplit[elm-1].length).length;
+                    colcnt += encline.length;
+                    //Regedit puts one hex byte no matter how long it is so adjust to mimic
+                    colcnt = colcnt > 74 ? 74:colcnt;
+                    
+                    for(var i=7; i < line.length;i++){
+                        var curchar = line.charCodeAt(i);
+                        var wrap = "";
+                        if(colcnt+4>80){
+                            encline += "\\\n  ";
+                            colcnt = 8;
+                            wrap = "";
+                        } else if (colcnt+7>80) {
+                            wrap = "\\\n  "
+                            colcnt = 5;
+                        } else {
+                            colcnt +=6
+                            wrap = "";
+                        }
+                        
+                        if(curchar>0 && curchar <= 0xFF)
+                            encline += (curchar<16?"0":"") + curchar.toString(16) + "," + wrap +"00,";
+                        else if(curchar > 0xFF && curchar <= 0xFFFF)
+                            encline += curchar.toString(16).replace(/^([0-9a-f]{2})([0-9a-f]{2})$/,"$2,"+wrap+"$1,");
+                    }
+                      
+                    encline += (colcnt+4>80?"\\\n  00,":(colcnt+7>80?"00,\\\n  ": "00,")) +"00";
+                        
+                    hexsplit[elm] = encline;
+                    
+                     
+                }
+                    
+            });
+             document.getElementById('regtxt').value= hexsplit.join("");
+            
+
+        }
+    </script>
+    <style>
+        body, html {height:100%; width:100%}
+    </style>
+</head>
+    <body>
+        <div style="overflow:auto;">
+            
+            <div style="float:left; background-color: rgba(200,200,0,.2); width:50%">
+                <textarea style="height:800px; width: 100%" id="regtxt" onchange="convertToAscii(this)" onkeydown="convertToAscii(this)" onkeyup="convertToAscii(this)" ></textarea>
+            </div>
+            <div style="float:right; width:50%; background-color:rgba(0,0,200,.2);">
+                <textarea style="height:800px; width: 100%" id="regout" onchange="convertToUnicodeHex(this)" onkeydown="convertToUnicodeHex(this)" onkeyup="convertToUnicodeHex(this)"></textarea>
+ 
+            </div>
+
+        </div>
+        <div id="status" style="clear:fix;width:100%; background-color:rgba(0,200,0,.2);">
+            <pre>Left: .reg contents  (null not allowed, hardcoded appended null terminator) <--> Right: .reg contents with reg_expand_sz editable
+ Automatically converts to/from hex byte representation and unicode<pre>
+        </div>
+    </body>
+</html>
