@@ -78,7 +78,16 @@
                 <textarea style="height:800px; width: 100%" id="regtxt" onchange="convertToAscii(this)" onkeydown="convertToAscii(this)" onkeyup="convertToAscii(this)" ></textarea>
             </div>
             <div style="float:right; width:50%; background-color:rgba(0,0,200,.2);">
-                <textarea style="height:800px; width: 100%" id="regout" onchange="convertToUnicodeHex(this)" onkeydown="convertToUnicodeHex(this)" onkeyup="convertToUnicodeHex(this)"></textarea>
+                <textarea style="height:800px; width: 100%" id="regout" onchange="convertToUnicodeHex(this)" onkeydown="convertToUnicodeHex(this)" onkeyup="convertToUnicodeHex(this)">
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\USER\Environment]
+
+"TEMP"=hex(2):%USERPROFILE%\AppData\Local\Temp
+"TMP"=hex(2):%USERPROFILE%\AppData\Local\Temp
+
+
+                </textarea>
  
             </div>
 
