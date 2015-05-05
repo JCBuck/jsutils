@@ -78,7 +78,7 @@
                 <textarea style="height:800px; width: 100%" id="regtxt" onchange="convertToAscii(this)" onkeydown="convertToAscii(this)" onkeyup="convertToAscii(this)" >
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\USER\Environment]
+[HKEY_CURRENT_USER\Environment]
 
 "TEMP"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,4c,\
   00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,4c,00,\
@@ -92,7 +92,7 @@ Windows Registry Editor Version 5.00
                 <textarea style="height:800px; width: 100%" id="regout" onchange="convertToUnicodeHex(this)" onkeydown="convertToUnicodeHex(this)" onkeyup="convertToUnicodeHex(this)">
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\USER\Environment]
+[HKEY_CURRENT_USER\Environment]
 
 "TEMP"=hex(2):%USERPROFILE%\AppData\Local\Temp
 "TMP"=hex(2):%USERPROFILE%\AppData\Local\Temp
